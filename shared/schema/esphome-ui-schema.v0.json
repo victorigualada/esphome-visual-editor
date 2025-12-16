@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/esphome-ui-schema.v0.json",
+  "title": "EsphomeUiSchema v0",
+  "type": "object",
+  "required": ["version", "components"],
+  "properties": {
+    "version": { "type": "string" },
+    "esphomeVersion": { "type": ["string", "null"] },
+    "generatedAt": { "type": "string" },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["domain", "platform", "schema"],
+        "properties": {
+          "domain": { "type": "string" },
+          "platform": { "type": "string" },
+          "displayName": { "type": "string" },
+          "docs": {
+            "type": "object",
+            "properties": {
+              "description": { "type": ["string", "null"] },
+              "url": { "type": ["string", "null"] }
+            },
+            "additionalProperties": true
+          },
+          "schema": { "$ref": "#/$defs/node" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "object",
+            "array",
+            "map",
+            "string",
+            "int",
+            "float",
+            "number",
+            "boolean",
+            "enum",
+            "const",
+            "id",
+            "pin",
+            "any_of",
+            "raw_yaml"
+          ]
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/node" }
+        },
+        "required": { "type": "array", "items": { "type": "string" } },
+        "items": { "$ref": "#/$defs/node" },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["value"],
+            "properties": { "value": {}, "label": { "type": "string" } }
+          }
+        },
+        "value": {},
+        "default": {},
+        "minimum": { "type": "number" },
+        "maximum": { "type": "number" },
+        "minLength": { "type": "integer" },
+        "maxLength": { "type": "integer" },
+        "pattern": { "type": "string" },
+        "ui": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": true
+    }
+  }
+}
+

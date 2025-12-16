@@ -1,0 +1,70 @@
+# See https://pre-commit.com for more information
+# Install locally with: pre-commit install
+
+minimum_pre_commit_version: "2.20.0"
+
+# Keep hooks fast and scoped to the repo's backend/frontend layout.
+exclude: >-
+  (?x)^
+  (
+    frontend/dist/|
+    frontend/node_modules/|
+    backend/\.venv/|
+    backend/\.mypy_cache/|
+    backend/\.pytest_cache/
+  )
+
+repos:
+  # Python formatting (backend)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.1
+    hooks:
+      - id: ruff-format
+        name: ruff format (backend)
+        files: ^backend/.*\.py$
+        args: [--config=backend/pyproject.toml]
+
+  # Linting/formatting (backend + frontend)
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint (backend)
+        language: python
+        entry: pylint
+        files: ^backend/(src|tests)/.*\.py$
+        args:
+          - --disable=import-error
+          - --rcfile=backend/pyproject.toml
+          - --init-hook=import sys; sys.path.append("backend/src")
+        additional_dependencies:
+          - pylint==3.3.4
+
+      - id: eslint
+        name: eslint (frontend)
+        language: node
+        entry: eslint
+        files: ^frontend/.*\.[jt]sx?$
+        args:
+          - --config
+          - frontend/eslint.config.js
+          - --max-warnings=0
+        additional_dependencies:
+          - eslint@9.17.0
+          - "@eslint/js@9.17.0"
+          - globals@15.14.0
+          - typescript@5.9.3
+          - typescript-eslint@8.19.0
+
+      - id: prettier
+        name: prettier (frontend)
+        language: node
+        entry: prettier
+        files: ^frontend/.*\.(ts|tsx|js|jsx|json|css|html|md|yaml|yml)$
+        args:
+          - --check
+          - --config
+          - frontend/.prettierrc.json
+          - --ignore-path
+          - frontend/.prettierignore
+        additional_dependencies:
+          - prettier@3.7.4

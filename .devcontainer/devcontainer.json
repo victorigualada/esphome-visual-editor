@@ -1,0 +1,25 @@
+{
+  "name": "esphome-visual-editor",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "docker-compose.devcontainer.yml"
+  ],
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces/esphome-visual-editor",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "runServices": [
+    "app",
+    "frontend"
+  ],
+  "remoteEnv": {
+    "VIRTUAL_ENV": "/home/vscode/.venv",
+    "PATH": "/home/vscode/.venv/bin:${containerEnv:PATH}",
+    "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"
+  },
+  "postCreateCommand": "bash ${containerWorkspaceFolder}/.devcontainer/postCreate.sh",
+  "postStartCommand": "bash ${containerWorkspaceFolder}/.devcontainer/postStart.sh"
+}

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Shared pre-commit hook (works on host + devcontainer).
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+cd "$ROOT"
+
+HERE="$(cd "$(dirname "$0")" && pwd)"
+ARGS=(hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit --hook-dir "$HERE" -- "$@")
+
+if [ -n "${VIRTUAL_ENV:-}" ] && [ -x "${VIRTUAL_ENV}/bin/python" ]; then
+  exec "${VIRTUAL_ENV}/bin/python" -m pre_commit "${ARGS[@]}"
+elif [ -x /home/vscode/.venv/bin/python ]; then
+  exec /home/vscode/.venv/bin/python -m pre_commit "${ARGS[@]}"
+elif [ -x .venv/bin/python ]; then
+  exec .venv/bin/python -m pre_commit "${ARGS[@]}"
+elif command -v pre-commit >/dev/null 2>&1; then
+  exec pre-commit "${ARGS[@]}"
+elif command -v python3 >/dev/null 2>&1; then
+  exec python3 -m pre_commit "${ARGS[@]}"
+else
+  echo '`pre-commit` not found. Install it (or use the DevContainer) and retry.' 1>&2
+  exit 1
+fi
+
+

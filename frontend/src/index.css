@@ -1,0 +1,82 @@
+:root {
+  /* Home Assistant-like theme defaults */
+  --primary-color: #03a9f4;
+  --accent-color: #ff9800;
+  --primary-background-color: #f3f4f6;
+  --secondary-background-color: #ffffff;
+  --card-background-color: var(--secondary-background-color);
+  --primary-text-color: #212121;
+  --secondary-text-color: #727272;
+  --text-primary-color: #ffffff;
+  --divider-color: rgba(0, 0, 0, 0.12);
+  --disabled-text-color: rgba(0, 0, 0, 0.38);
+
+  /* Modern UI tokens (HA-inspired) */
+  --ha-card-border-radius: 14px;
+  --ha-control-border-radius: 10px;
+  --ha-button-border-radius: 10px;
+  --ha-control-height: 38px;
+  --ha-spacing: 8px;
+
+  --ha-surface: var(--secondary-background-color);
+  --ha-surface-2: rgba(0, 0, 0, 0.02);
+  --ha-surface-3: rgba(0, 0, 0, 0.05);
+  --ha-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --ha-elevation-2: 0 6px 14px rgba(0, 0, 0, 0.14);
+  --ha-card-box-shadow: var(--ha-elevation-1);
+  --ha-focus-ring: 0 0 0 3px rgba(3, 169, 244, 0.28);
+
+  --ha-font-family: Roboto, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+  --ha-code-font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  font-family: var(--ha-font-family);
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--primary-text-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-size: 14px;
+  background:
+    radial-gradient(1000px 600px at 20% 0%, rgba(3, 169, 244, 0.1), transparent 55%),
+    radial-gradient(900px 500px at 90% 10%, rgba(255, 152, 0, 0.08), transparent 55%), var(--primary-background-color);
+}
+
+eve-app {
+  display: block;
+  height: 100%;
+}
+
+#eveBootError {
+  position: fixed;
+  z-index: 9999;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  max-height: 45vh;
+  overflow: auto;
+  margin: 0;
+  padding: 12px;
+  border-radius: var(--ha-card-border-radius);
+  border: 1px solid rgba(219, 68, 55, 0.35);
+  background: #fff8f8;
+  color: #8a1f1f;
+  box-shadow: var(--ha-elevation-2);
+  white-space: pre-wrap;
+}

@@ -1,0 +1,50 @@
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+  "E",    # pycodestyle errors
+  "F",    # pyflakes
+  "I",    # isort
+  "B",    # flake8-bugbear
+  "UP",   # pyupgrade
+]
+ignore = [
+  "E501", # handled by formatter
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["eve_schema_service"]
+
+[tool.pylint.main]
+py-version = "3.12"
+jobs = 0
+extension-pkg-allow-list = []
+
+[tool.pylint.messages_control]
+disable = [
+  # Ruff already covers most style issues; keep pylint focused on correctness.
+  "missing-module-docstring",
+  "missing-class-docstring",
+  "missing-function-docstring",
+  # Many code paths intentionally catch broad exceptions and/or import lazily
+  # (e.g. ESPHome imports) to keep startup fast and error handling uniform.
+  "broad-exception-caught",
+  "import-outside-toplevel",
+  "consider-using-from-import",
+  "too-few-public-methods",
+  "too-many-branches",
+  "too-many-locals",
+  "too-many-statements",
+  "too-many-arguments",
+  "too-many-instance-attributes",
+  "too-many-return-statements",
+  "duplicate-code",
+  "fixme",
+]
+
+[tool.pylint.format]
+max-line-length = 120
+
+

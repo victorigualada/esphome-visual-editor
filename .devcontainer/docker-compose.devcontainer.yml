@@ -1,0 +1,7 @@
+services:
+  devcontainer:
+    image: mcr.microsoft.com/devcontainers/python:3.12-bookworm
+    working_dir: /workspaces/esphome-visual-editor
+    volumes:
+      - .:/workspaces/esphome-visual-editor
+    command: sleep infinity

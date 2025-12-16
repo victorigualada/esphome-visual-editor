@@ -1,0 +1,584 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.yamlErrorOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.yamlErrorBox {
+  pointer-events: auto;
+  width: min(860px, 100%);
+  margin: 0 auto;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 248, 248, 0.92);
+}
+
+.formSpacer {
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.formDivider {
+  height: 1px;
+  background: var(--divider-color);
+  margin: 8px 0;
+  flex: 0 0 auto;
+}
+
+.formRow label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 650;
+  font-size: 12px;
+  color: var(--secondary-text-color);
+}
+
+.formRow input,
+.formRow select,
+.formRow textarea,
+.mapKeyInput,
+input.mapValueInput,
+select.mapValueInput,
+.searchSelectInput,
+.pinSearch,
+.boardPickerSearch {
+  font-size: 14px;
+}
+
+.formRow input {
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  padding: 8px 12px;
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
+  min-height: var(--ha-control-height);
+  width: 100%;
+  transition:
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.mapKeyInput,
+input.mapValueInput {
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  padding: 8px 12px;
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
+  min-height: var(--ha-control-height);
+  transition:
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.formRow select {
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  padding: 8px 34px 8px 12px;
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
+  min-height: var(--ha-control-height);
+  width: 100%;
+  transition:
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+select.mapValueInput {
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  padding: 8px 34px 8px 12px;
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
+  min-height: var(--ha-control-height);
+  transition:
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.formRow label {
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.formRow label input,
+.formRow label select,
+.formRow label textarea {
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.formRow input:focus,
+.formRow select:focus,
+.mapKeyInput:focus,
+input.mapValueInput:focus,
+select.mapValueInput:focus,
+.field select:focus,
+.searchSelectInput:focus,
+.addDialogSearch:focus,
+.pinSearch:focus,
+.boardPickerSearch:focus {
+  outline: none;
+  border-color: rgba(3, 169, 244, 0.5);
+  box-shadow: var(--ha-focus-ring);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--secondary-text-color);
+  margin-bottom: 8px;
+}
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dangerBtn {
+  background: rgba(185, 28, 28, 0.1);
+  color: #7f1d1d;
+  border: 1px solid rgba(185, 28, 28, 0.25);
+}
+
+.dangerBtn:hover {
+  background: rgba(185, 28, 28, 0.16);
+}
+
+.errorBox {
+  border: 1px solid rgba(185, 28, 28, 0.32);
+  background: rgba(185, 28, 28, 0.06);
+  color: #7f1d1d;
+  padding: 12px 12px;
+  border-radius: var(--ha-card-border-radius);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  line-height: 1.35;
+}
+
+.errorBox code {
+  font-family: var(--ha-code-font-family);
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(185, 28, 28, 0.25);
+  background: rgba(255, 255, 255, 0.55);
+  color: inherit;
+}
+
+.errorBox button {
+  border-color: rgba(185, 28, 28, 0.25);
+}
+
+.errorBox button:hover {
+  border-color: rgba(185, 28, 28, 0.35);
+  background: rgba(185, 28, 28, 0.08);
+}
+
+.yamlEditor {
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  overflow: hidden;
+  width: 100%;
+  padding-top: 8px;
+}
+
+.yamlEditor.inline {
+  flex: 0 0 auto;
+}
+
+.plainYaml {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: none;
+  padding: 10px;
+  resize: none;
+  font-family: var(--ha-code-font-family);
+  font-size: 13px;
+  line-height: 1.4;
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
+}
+
+.searchSelect {
+  position: relative;
+}
+
+.searchSelectLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.searchSelectLabel > span {
+  margin: 0;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+}
+
+.searchSelectInputWrap {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.searchSelectLeadingIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.searchSelectInputWrap.hasLeadingIcon .searchSelectInput {
+  padding-left: 38px;
+}
+
+.searchSelectInput {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  padding: 10px 12px;
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
+  width: 100%;
+}
+
+.searchSelectMenu {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  background: var(--card-background-color);
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-card-border-radius);
+  overflow: auto;
+  max-height: 260px;
+  box-shadow: var(--ha-card-box-shadow);
+}
+
+.searchSelectItem {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+  border: 0;
+  background: transparent;
+  padding: 10px;
+  border-radius: 0;
+}
+
+.searchSelectItem:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.searchSelectItem.active {
+  background: rgba(3, 169, 244, 0.12);
+}
+
+.searchSelectEmpty {
+  padding: 10px;
+  color: var(--secondary-text-color);
+  font-size: 12px;
+}
+
+.iconOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.iconOptionImg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.iconOptionText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottomPanel {
+  margin-top: 10px;
+}
+
+.output {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--divider-color);
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--primary-text-color);
+  border-radius: var(--ha-control-border-radius);
+  max-height: 160px;
+  overflow: auto;
+  font-size: 12px;
+  font-family: var(--ha-code-font-family);
+  white-space: pre-wrap;
+}
+
+.formGroup {
+  background: rgba(255, 255, 255, 0.55);
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+
+.mapEditor {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mapEntry {
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-card-border-radius);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 10px;
+}
+
+.mapEntryHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mapEntryHeader .mapKeyInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.mapEntryBody {
+  margin-top: 10px;
+}
+
+.mapEntryBody .toggleRow {
+  margin-bottom: 10px;
+}
+
+.mapEntryBody .mapValueInput {
+  width: 100%;
+}
+
+.group {
+  display: block;
+}
+
+.groupHeader {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 8px 6px;
+  margin: 0;
+  border-radius: var(--ha-control-border-radius);
+}
+
+.group.isExpanded .groupHeader {
+  margin-bottom: 16px;
+}
+
+.groupCaret {
+  width: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-text-color);
+}
+
+.groupTitle {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.groupBody {
+  margin: 0;
+  padding: 0 2px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formGroupBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.group.isExpanded .groupBody {
+  margin-left: 15px;
+  padding: 2px 2px 2px 16px;
+  border-left: 2px solid var(--divider-color);
+}
+
+.toggleRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Segmented control (uses .toggleBtn styles but renders as a single pill group) */
+.segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 3px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.segmented .toggleBtn {
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+  padding: 8px 12px;
+  min-height: 34px;
+}
+
+.segmented .toggleBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: none;
+}
+
+.segmented .toggleBtn.active {
+  background: var(--secondary-background-color);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+}
+
+.toggleBtn {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 650;
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    transform 70ms ease;
+}
+
+.toggleBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.toggleBtn.active {
+  border-color: rgba(3, 169, 244, 0.65);
+  background: rgba(3, 169, 244, 0.16);
+  box-shadow: 0 1px 10px rgba(3, 169, 244, 0.14);
+}
+
+.anyOfInline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arrayEditor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arrayActions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2px;
+}
+
+.arrayAddBtn {
+  min-height: 34px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: none;
+  font-weight: 700;
+}
+
+.arrayAddBtn:hover {
+  border-color: rgba(3, 169, 244, 0.45);
+  background: rgba(3, 169, 244, 0.08);
+}
+
+.arrayAddIcon {
+  font-size: 18px;
+  line-height: 18px;
+  opacity: 0.85;
+}
+
+.arrayRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrayRow input.mapValueInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.arrayRowAdd {
+  justify-content: flex-start;
+}
+
+.codeArea {
+  font-family: var(--ha-code-font-family);
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  padding: 10px 12px;
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  background: var(--secondary-background-color);
+  color: var(--primary-text-color);
+}

@@ -1,0 +1,19 @@
+.DS_Store
+node_modules/
+dist/
+.vite/
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+*.pyc
+projects/*.yaml
+
+# Home Assistant devcontainer runtime files
+.devcontainer/ha-config/.storage/
+.devcontainer/ha-config/.cloud/
+.devcontainer/ha-config/.uuid
+.devcontainer/ha-config/.HA_VERSION
+.devcontainer/ha-config/home-assistant_v2.db*
+.devcontainer/ha-config/home-assistant.log*
+.devcontainer/ha-config/*.log

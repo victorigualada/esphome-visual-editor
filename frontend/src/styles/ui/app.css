@@ -1,0 +1,49 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingScreen {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--primary-background-color);
+}
+
+.loadingCard {
+  width: min(560px, 95vw);
+  background: var(--card-background-color);
+  border-radius: var(--ha-card-border-radius);
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  align-items: center;
+  box-shadow: var(--ha-card-box-shadow);
+}
+
+.spinner {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #60a5fa;
+  animation: spin 900ms linear infinite;
+}
+
+.loadingTitle {
+  font-weight: 800;
+}
+
+.loadingSub {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}

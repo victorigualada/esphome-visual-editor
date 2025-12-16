@@ -1,0 +1,58 @@
+name-template: "v$NEXT_PATCH_VERSION"
+tag-template: "v$NEXT_PATCH_VERSION"
+
+categories:
+  - title: "Breaking Changes"
+    labels:
+      - "breaking"
+      - "major"
+  - title: "Features"
+    labels:
+      - "feature"
+      - "enhancement"
+      - "minor"
+  - title: "Bug Fixes"
+    labels:
+      - "bug"
+      - "fix"
+      - "patch"
+  - title: "Documentation"
+    labels:
+      - "docs"
+      - "documentation"
+  - title: "Maintenance"
+    labels:
+      - "chore"
+      - "refactor"
+      - "build"
+      - "ci"
+      - "dependencies"
+
+exclude-labels:
+  - "skip-changelog"
+
+change-template: "- $TITLE (#$NUMBER) @$AUTHOR"
+change-title-escapes: '\<*_&'
+
+version-resolver:
+  major:
+    labels:
+      - "major"
+      - "breaking"
+  minor:
+    labels:
+      - "minor"
+      - "feature"
+      - "enhancement"
+  patch:
+    labels:
+      - "patch"
+      - "fix"
+      - "bug"
+  default: patch
+
+template: |
+  ## Changes
+  $CHANGES
+
+

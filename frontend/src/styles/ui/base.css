@@ -1,0 +1,430 @@
+:host {
+  box-sizing: border-box;
+}
+
+/* MDI webfont path fix:
+   @mdi/font ships CSS that references "../fonts/..." which breaks when the app is served
+   from a subpath (e.g. Home Assistant ingress). Use "fonts/..." so it resolves relative
+   to the app root instead of the domain root / parent directory. */
+@font-face {
+  font-family: "Material Design Icons";
+  src:
+    url("fonts/materialdesignicons-webfont.woff2?v=7.4.47") format("woff2"),
+    url("fonts/materialdesignicons-webfont.woff?v=7.4.47") format("woff"),
+    url("fonts/materialdesignicons-webfont.ttf?v=7.4.47") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Use HA code font for text inputs (requested). */
+input,
+select,
+textarea {
+  font-family: var(--ha-code-font-family);
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+  padding-right: 34px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%236b7280' d='M7 10l5 5l5-5z'/%3E%3C/svg%3E");
+}
+
+.topbar select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M7 10l5 5l5-5z'/%3E%3C/svg%3E");
+}
+
+button {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.04)), var(--ha-surface-3);
+  color: var(--primary-text-color);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  min-height: var(--ha-control-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    transform 70ms ease;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05)), var(--ha-surface-3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:focus-visible {
+  outline: none;
+  box-shadow: var(--ha-focus-ring);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+code {
+  font-family: var(--ha-code-font-family);
+}
+
+.formRow {
+  margin: 0;
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+  margin-bottom: 6px;
+}
+
+.fieldLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.fieldLabelRow .fieldLabel {
+  margin-bottom: 0;
+}
+
+.fieldLabelActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fieldLabelIconBtn {
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  padding: 0;
+  border-radius: 9px;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+}
+
+.fieldLabelIconBtn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: none;
+}
+
+.fieldLabelIconBtn:active {
+  transform: none;
+}
+
+.fieldLabelIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+  color: #6b7280;
+}
+
+.mdiOptIcon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  flex: 0 0 auto;
+}
+
+.iconImg {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.iconBtn {
+  width: 38px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  color: #374151;
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    transform 70ms ease;
+}
+
+.iconBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.iconBtn.danger {
+  color: #b91c1c;
+}
+
+.iconBtn.danger:hover {
+  border-color: rgba(185, 28, 28, 0.35);
+  background: rgba(185, 28, 28, 0.06);
+}
+
+.pillRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pill {
+  /* Works for both <a> and <button> */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  min-height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: none;
+  color: var(--primary-text-color);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 70ms ease;
+}
+
+.pill:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.pill:focus-visible {
+  outline: none;
+  box-shadow: var(--ha-focus-ring);
+}
+
+.pillLink {
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.pillLink:hover {
+  border-color: rgba(3, 169, 244, 0.45);
+  background: rgba(3, 169, 244, 0.1);
+}
+
+/* Clickable pill animation: hide text -> show "open in new" icon */
+.pillLinkText {
+  transition:
+    opacity 140ms ease,
+    transform 180ms ease;
+  will-change: opacity, transform;
+}
+
+.pillLinkIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  transition:
+    opacity 140ms ease,
+    transform 180ms ease;
+  will-change: opacity, transform;
+  pointer-events: none;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.pillLink:hover .pillLinkText,
+.pillLink:focus-visible .pillLinkText {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.pillLink:hover .pillLinkIcon,
+.pillLink:focus-visible .pillLinkIcon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.caretIcon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  transition: transform 160ms ease;
+}
+
+.caretIcon path {
+  fill: currentColor;
+}
+
+.caretIcon.isCollapsed {
+  transform: rotate(90deg);
+}
+
+.caretIcon.isExpanded {
+  transform: rotate(180deg);
+}
+
+.switchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--ha-control-height);
+  padding: 0 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.formRow label.switchRow {
+  flex-direction: row;
+}
+
+.switchLabel {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+  line-height: 1.1;
+}
+
+.switch {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switchSlider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 160ms ease;
+}
+
+.switchSlider::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  top: 2px;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  transition: transform 160ms ease;
+}
+
+.switch input:checked + .switchSlider {
+  background: var(--primary-color);
+}
+
+.switch input:checked + .switchSlider::before {
+  transform: translateX(18px);
+}
+
+.switch input:focus-visible + .switchSlider {
+  outline: 3px solid rgba(147, 197, 253, 0.9);
+  outline-offset: 2px;
+}
+
+.paneTitle {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--secondary-text-color);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.primaryBtn {
+  width: 100%;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.1)), var(--primary-color);
+  color: var(--text-primary-color);
+  box-shadow: var(--ha-elevation-1);
+}
+
+.primaryBtn:hover {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.12)), #0398db;
+  box-shadow: var(--ha-elevation-2);
+}
+
+.primaryBtn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+}
+
+.titleBtn {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

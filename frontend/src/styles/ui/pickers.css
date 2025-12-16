@@ -1,0 +1,441 @@
+.pinGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.pinoutImg {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  background: white;
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-card-border-radius);
+}
+
+.pinSearch {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+.pin {
+  text-align: left;
+  border: 1px solid var(--divider-color);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72));
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    transform 70ms ease;
+}
+
+.pin:hover {
+  border-color: rgba(3, 169, 244, 0.35);
+  background: rgba(3, 169, 244, 0.06);
+  box-shadow: var(--ha-elevation-1);
+}
+
+.pinWarn {
+  border-color: rgba(219, 68, 55, 0.32);
+  box-shadow:
+    inset 3px 0 0 rgba(219, 68, 55, 0.35),
+    0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.pinHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.pinNum {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: var(--primary-text-color);
+  flex: 0 0 auto;
+}
+
+.pinMain {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pinValue {
+  font-family: var(--ha-code-font-family);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pinDesc {
+  font-size: 12px;
+  color: var(--secondary-text-color);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.boardPickerRow {
+  display: block;
+}
+
+.boardPickerBtn {
+  width: 100%;
+  min-height: var(--ha-control-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--divider-color);
+  border-radius: 10px;
+  background: var(--secondary-background-color);
+  box-shadow: none;
+  user-select: none;
+  transition:
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease,
+    transform 70ms ease;
+}
+
+.boardPickerBtn:hover {
+  border-color: rgba(3, 169, 244, 0.35);
+  background: rgba(3, 169, 244, 0.05);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.boardPickerBtn:focus-visible {
+  outline: none;
+  border-color: rgba(3, 169, 244, 0.5);
+  box-shadow: var(--ha-focus-ring);
+}
+
+.boardPickerBtn.isEmpty {
+  border-style: dashed;
+  background:
+    linear-gradient(180deg, rgba(3, 169, 244, 0.06), rgba(255, 255, 255, 0)), var(--secondary-background-color);
+}
+
+.boardPickerBtnMain {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.boardPickerBtnRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.boardPickerChevron {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%236b7280' d='M7 10l5 5l5-5z'/%3E%3C/svg%3E");
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+.boardPickerBtn:hover .boardPickerChevron {
+  opacity: 1;
+  transform: translateY(1px);
+}
+
+.boardPickerName {
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.boardPickerSlug {
+  font-family: var(--ha-code-font-family);
+  color: var(--secondary-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.boardPickerSep {
+  width: 1px;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.boardPickerPlaceholder {
+  font-weight: 600;
+  color: var(--secondary-text-color);
+}
+
+.boardPickerBtn.isEmpty .boardPickerPlaceholder {
+  font-weight: 750;
+  color: var(--primary-text-color);
+}
+
+.boardPickerChip {
+  flex: 0 0 auto;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--secondary-text-color);
+}
+
+/* Inline pin picker control (badge + input) */
+.pinInlineControl {
+  display: flex;
+  align-items: center;
+  min-height: var(--ha-control-height);
+  border: 1px solid var(--divider-color);
+  border-radius: 10px;
+  background: var(--secondary-background-color);
+  overflow: hidden;
+  transition:
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.pinInlineControlWarn {
+  border-color: rgba(219, 68, 55, 0.35);
+}
+
+.pinInlineBadge {
+  height: 100%;
+  min-height: var(--ha-control-height);
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: var(--ha-code-font-family);
+  color: var(--primary-text-color);
+  background: rgba(0, 0, 0, 0.03);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pinInlineBadgeWarn {
+  background: rgba(219, 68, 55, 0.08);
+  border-right-color: rgba(219, 68, 55, 0.18);
+}
+
+.pinInlineRow {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pinInlineValueBtn {
+  flex: 0 0 auto;
+  min-width: 8ch;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--primary-text-color);
+  padding: 10px 12px;
+  min-height: var(--ha-control-height);
+  font-family: var(--ha-code-font-family);
+  font-weight: 800;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pinInlineValueBtn.isEmpty {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+}
+
+.pinInlineSep {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.pinInlineSepWarn {
+  background: rgba(219, 68, 55, 0.25);
+}
+
+.pinInlineDescInline {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--secondary-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pinInlineDescWarn {
+  color: #8a1f1f;
+}
+
+.boardPickerInput {
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+  padding: 8px 12px;
+  width: 100%;
+  background: white;
+  min-height: var(--ha-control-height);
+}
+
+.boardPickerSearch {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.boardCard {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  border: 1px solid var(--divider-color);
+  background: var(--ha-surface);
+  border-radius: var(--ha-card-border-radius);
+  padding: 10px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.boardCard:hover {
+  border-color: rgba(3, 169, 244, 0.35);
+  background: rgba(3, 169, 244, 0.06);
+}
+
+.boardCard.active {
+  border-color: rgba(3, 169, 244, 0.5);
+  background: rgba(3, 169, 244, 0.12);
+}
+
+.boardImg {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  background: white;
+  border: 1px solid var(--divider-color);
+  border-radius: var(--ha-control-border-radius);
+}
+
+.boardMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.boardName {
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.boardSlug {
+  font-size: 12px;
+  color: var(--secondary-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.boardChip {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--secondary-text-color);
+  border: 1px solid var(--divider-color);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 999px;
+  padding: 2px 8px;
+  width: fit-content;
+}
+
+.boardEditorFields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.boardEditorTopRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.boardEditorTopLeft {
+  flex: 1;
+  min-width: 0;
+}
+
+.boardEditorImg {
+  width: 240px;
+  height: 160px;
+  object-fit: contain;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  pointer-events: none;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 980px) {
+  .boardEditorTopRow {
+    flex-direction: column;
+  }
+
+  .boardEditorImg {
+    width: 100%;
+    height: 190px;
+  }
+}
