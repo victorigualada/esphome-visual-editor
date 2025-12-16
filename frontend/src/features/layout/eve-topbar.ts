@@ -38,10 +38,14 @@ export class EveTopbar extends LitElement {
     const store = this.store;
     if (!store) return nothing;
 
+    const basePath = window.location.pathname.endsWith("/") ? window.location.pathname : `${window.location.pathname}/`;
+    const logoSrc = `${window.location.origin}${basePath}logo.svg`;
+
     const q = (this.projectQuery || "").trim().toLowerCase();
     const projects = Array.isArray(store.projects) ? store.projects : [];
+    const candidates = projects.filter((p) => p !== store.projectName);
     const filtered = this.projectOpen
-      ? (q ? projects.filter((p) => p.toLowerCase().includes(q)) : projects).slice(0, 120)
+      ? (q ? candidates.filter((p) => p.toLowerCase().includes(q)) : candidates).slice(0, 120)
       : [];
 
     const selectProject = async (name: string) => {
@@ -53,7 +57,7 @@ export class EveTopbar extends LitElement {
     return html`
       <header class="topbar">
         <div class="brand">
-          <img class="brandLogo" src="/logo.svg" alt="" />
+          <img class="brandLogo" src=${logoSrc} alt="" />
           <div class="brandText">
             <div class="title">ESPHome Visual Editor</div>
             <div class="subtitle">Schema service: v0.1 · ESPHome: ${store.meta?.esphomeVersion ?? "unknown"}</div>
@@ -67,23 +71,23 @@ export class EveTopbar extends LitElement {
                 type="button"
                 class="topbarProjectBtn"
                 @click=${(e: Event) => {
-                  e.stopPropagation();
-                  this.projectOpen = !this.projectOpen;
-                  this.projectQuery = "";
-                  if (this.projectOpen) {
-                    queueMicrotask(() => {
-                      const el = this.renderRoot.querySelector<HTMLInputElement>(".topbarProjectSearch");
-                      el?.focus();
-                    });
-                  }
-                }}
+        e.stopPropagation();
+        this.projectOpen = !this.projectOpen;
+        this.projectQuery = "";
+        if (this.projectOpen) {
+          queueMicrotask(() => {
+            const el = this.renderRoot.querySelector<HTMLInputElement>(".topbarProjectSearch");
+            el?.focus();
+          });
+        }
+      }}
               >
                 <span class="topbarProjectBtnText">${store.projectName}</span>
                 <span class="topbarProjectChevron" aria-hidden="true"></span>
               </button>
 
               ${this.projectOpen
-                ? html`
+        ? html`
                     <div class="topbarProjectMenu" @click=${(e: Event) => e.stopPropagation()}>
                       <input
                         class="topbarProjectSearch"
@@ -91,22 +95,22 @@ export class EveTopbar extends LitElement {
                         .value=${this.projectQuery}
                         @input=${(e: Event) => (this.projectQuery = (e.target as HTMLInputElement).value)}
                         @keydown=${(e: KeyboardEvent) => {
-                          if (e.key === "Escape") {
-                            this.projectOpen = false;
-                            this.projectQuery = "";
-                          }
-                          if (e.key === "Enter") {
-                            const first = filtered[0];
-                            if (first) void selectProject(first);
-                          }
-                        }}
+            if (e.key === "Escape") {
+              this.projectOpen = false;
+              this.projectQuery = "";
+            }
+            if (e.key === "Enter") {
+              const first = filtered[0];
+              if (first) void selectProject(first);
+            }
+          }}
                       />
                       <div class="topbarProjectList">
                         ${filtered.length === 0
-                          ? html`<div class="topbarProjectEmpty">No results</div>`
-                          : filtered.map((p) => {
-                              const active = p === store.projectName;
-                              return html`
+            ? html`<div class="topbarProjectEmpty">No results</div>`
+            : filtered.map((p) => {
+              const active = p === store.projectName;
+              return html`
                                 <button
                                   type="button"
                                   class=${active ? "topbarProjectItem active" : "topbarProjectItem"}
@@ -115,11 +119,11 @@ export class EveTopbar extends LitElement {
                                   ${p}
                                 </button>
                               `;
-                            })}
+            })}
                       </div>
                     </div>
                   `
-                : nothing}
+        : nothing}
             </div>
           </div>
           <button @click=${() => void store.save()} ?disabled=${!!store.yamlError}>Save</button>
