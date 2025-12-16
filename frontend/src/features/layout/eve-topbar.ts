@@ -1,6 +1,7 @@
 import { LitElement, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import type { EveAppStore } from "../../app/eve-app-store";
+import { appBaseUrl } from "../../lib/app-base-url";
 import { uiBaseStyles, uiTopbarStyles } from "../../styles/ui";
 
 @customElement("eve-topbar")
@@ -38,10 +39,13 @@ export class EveTopbar extends LitElement {
     const store = this.store;
     if (!store) return nothing;
 
+    const logoSrc = `${appBaseUrl()}logo.svg`;
+
     const q = (this.projectQuery || "").trim().toLowerCase();
     const projects = Array.isArray(store.projects) ? store.projects : [];
+    const candidates = projects.filter((p) => p !== store.projectName);
     const filtered = this.projectOpen
-      ? (q ? projects.filter((p) => p.toLowerCase().includes(q)) : projects).slice(0, 120)
+      ? (q ? candidates.filter((p) => p.toLowerCase().includes(q)) : candidates).slice(0, 120)
       : [];
 
     const selectProject = async (name: string) => {
@@ -53,7 +57,7 @@ export class EveTopbar extends LitElement {
     return html`
       <header class="topbar">
         <div class="brand">
-          <img class="brandLogo" src="/logo.svg" alt="" />
+          <img class="brandLogo" src=${logoSrc} alt="" />
           <div class="brandText">
             <div class="title">ESPHome Visual Editor</div>
             <div class="subtitle">Schema service: v0.1 · ESPHome: ${store.meta?.esphomeVersion ?? "unknown"}</div>

@@ -68,3 +68,10 @@ repos:
           - frontend/.prettierignore
         additional_dependencies:
           - prettier@3.7.4
+
+      - id: typecheck
+        name: typecheck (frontend)
+        language: system
+        entry: yarn --cwd frontend typecheck
+        files: ^frontend/
+        pass_filenames: false
