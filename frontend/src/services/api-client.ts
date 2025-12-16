@@ -5,6 +5,11 @@ function normalizeApiPath(path: string): string {
   return p.startsWith("/") ? p.slice(1) : p;
 }
 
+function appBaseUrl(): string {
+  const basePath = window.location.pathname.endsWith("/") ? window.location.pathname : `${window.location.pathname}/`;
+  return `${window.location.origin}${basePath}`;
+}
+
 export class ApiError extends Error {
   status: number;
   statusText: string;
