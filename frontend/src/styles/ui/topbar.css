@@ -172,7 +172,7 @@
   gap: 6px;
 }
 
-.topbarProjectItem {
+.topbar .topbarProjectMenu button.topbarProjectItem {
   width: 100%;
   text-align: left;
   justify-content: flex-start;
@@ -181,14 +181,15 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: rgba(0, 0, 0, 0.02);
   box-shadow: none;
+  color: #000;
 }
 
-.topbarProjectItem:hover {
+.topbar .topbarProjectMenu button.topbarProjectItem:hover {
   background: rgba(3, 169, 244, 0.08);
   border-color: rgba(3, 169, 244, 0.22);
 }
 
-.topbarProjectItem.active {
+.topbar .topbarProjectMenu button.topbarProjectItem.active {
   background: rgba(3, 169, 244, 0.12);
   border-color: rgba(3, 169, 244, 0.3);
 }

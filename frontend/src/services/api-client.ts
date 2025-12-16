@@ -1,3 +1,5 @@
+import { appBaseUrl } from "../lib/app-base-url";
+
 function normalizeApiPath(path: string): string {
   const p = path.trim();
   return p.startsWith("/") ? p.slice(1) : p;
@@ -23,7 +25,8 @@ export async function apiJson<T>(path: string, init?: RequestInit): Promise<T> {
   const t = setTimeout(() => controller.abort(), timeoutMs);
   let res: Response;
   try {
-    res = await fetch(normalizeApiPath(path), { ...init, signal: controller.signal });
+    const url = new URL(normalizeApiPath(path), appBaseUrl()).toString();
+    res = await fetch(url, { ...init, signal: controller.signal });
   } catch (e) {
     if ((e as any)?.name === "AbortError") {
       throw new Error(`Request timed out after ${timeoutMs}ms`);
